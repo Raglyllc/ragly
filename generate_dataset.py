@@ -46,25 +46,44 @@ def generate_qa(prompt, text, temperature=0.2):
         return []
 
 factual_prompt = """
-You are an expert educational content creator tasked with generating factual questions and answers based on the following document excerpt. These questions should focus on retrieving specific details, figures, definitions, and key facts from the text.
-
-Instructions:
-
-- Generate **5** factual questions, each with a corresponding **expected_output**.
-- Ensure all questions are directly related to the document excerpt.
-- Present the output in the following structured JSON format:
-
-[
-  {
-    "question": "What is the main purpose of the project described in the document?",
-    "expected_output": "To develop a new framework for data security using AI-powered tools."
+{
+  "prompt_id": "ragly_001",
+  "user_intent": "Provide an in-depth analysis of decentralized education and its impact on learning outcomes.",
+  "retrieval_context": {
+    "source_type": ["academic_papers", "open-source repositories", "user-contributed data"],
+    "preferred_sources": [
+      "arxiv.org",
+      "MIT OpenCourseWare",
+      "Sharif Allen's RAGLY knowledge base"
+    ],
+    "real-time_data": true,
+    "contextual_weighting": {
+      "historical_relevance": 0.4,
+      "recent_updates": 0.6
+    }
   },
-  {
-    "question": "Who authored the report mentioned in the document?",
-    "expected_output": "Dr. Jane Smith."
+  "augmentation_parameters": {
+    "knowledge_blending": true,
+    "bias_mitigation": true,
+    "cross-domain synthesis": true,
+    "adaptive_citations": true
+  },
+  "regenerative_output": {
+    "output_type": "multi-modal",
+    "format_options": ["text", "graph", "interactive simulation"],
+    "personalization": {
+      "learning_style": "visual",
+      "difficulty_level": "advanced",
+      "cultural_relevance": true
+    }
+  },
+  "validation_pipeline": {
+    "fact-checking": true,
+    "hallucination_detection": true,
+    "human-in-the-loop": false,
+    "iterative_feedback": true
   }
-]
-"""
+
 
 # Generate dataset
 import os
